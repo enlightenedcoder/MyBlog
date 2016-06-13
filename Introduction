@@ -1,0 +1,37 @@
+Introduction to PHP
+Posted on June 13, 2016 by enlightenedcoder
+Hi friends this is my first blog post so bear with me if there are any mistakes.So i am going to teach you php.So the first question that arises to mind is what is php.Php stands for hypertext preprocessor.So next questions is what is hyper text preprocessor? Hyper-Text Preprocessor is used to generate dynamic web pages.If you dont know dynamic web pages then there is a problem.Just understand the webpages that contains interactive contents coming from the server is called dynamic web pages.So what is coming from server what is server?Server is a machine(computer)  connected to the network (internet) having certain address like 216.58.199.142.This address is called an IP Address that uniquely identifies the host (server machine) .Can you guess where does is Address goes type it in you browser and see what happens.Yeah it goes to google but it not a friendly way of visiting any  any website so the Ip address have domain name a friendly way of browsing through web sites.
+
+What the hell is ip,sever,domain I just want to learn php Yeah just wait next is some cool facts about php
+
+1)Php was originally called Personal Home Page (why i dont know just kidding as the name suggest it was first used to create personal website.)
+
+2)75% of Web 2.0 sites are built in PHP. PHP is used by 81.7% of all the websites whose server-side programming language we know.
+
+3)Some of the biggest online brands, such as Facebook, ProProfs, Digg, Friendster, Flickr, Technorati, and Yahoo! are powered by PHP.
+
+4)Hpertext preprocessor is a Reverse acronym. what is reverse acronym .Reverse acronym is a combination of backward and acronym something like Preprocessor Hypertext Preprocessor PHP.
+
+Enough of facts i want to learn coding php.But before something is required for coding yeah you require a computer but also some software installed to run and execute php before we begin coding.So next post is on how to install php apache mysql on windows.If you already have it skip the post.
+
+Here are the table of contents you will learn in next few posts
+
+1)
+
+2)
+
+3)
+
+4)
+
+5)
+
+6)
+
+7)
+
+8)
+
+9)
+
+What the f*** is this empty content.I know they are empty because I dont want to keep this course boring with regular stuff of Introduction->Installation->Varables->Loops-> Functions——- rather a different approach with stuff you can steal and put it in actual code as well be skillful in writing php code without internet is the goal of this course.What without internet yeah without internet (i.e without copy paste and without stackoverflow atleast).So let get started.
