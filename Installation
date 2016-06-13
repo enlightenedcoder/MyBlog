@@ -1,0 +1,109 @@
+Install php apache mysql on windows
+Posted on June 13, 2016 by enlightenedcoder
+Fist question from pros Why install php apache mysql separately if i cant install from single package installers like(XAMPP,WAMP,MAMP) ?The answer is quiet complicated its like explaining what came first egg for chicken Just Kidding .I will give the answer in next coming sections.Now just follow me first you require a server software.Server Software is used to handle the request coming from the user.What type of request and who is the user? Whenever a user visit a website (Suppose google.com) from a browser he is requesting a web page .Here browser is called client and the goolge.com has a server.So client sends http request to the server and server responds back with a web page.
+
+2000px-client-server-model-svg
+
+So the Server has a software to handle request from client one such server is Apache httpd server.So lets first install Apache httpd server.Goto link https://www.apachelounge.com/download/ scroll down near Info & Changelog download 32Bit or 64Bit zip depending on your machine prefer to go with 32bit version.Also download and install the latest C++ Redistributable Visual Studio 2015 : vc_redist_x64/86.exe
+
+Create a folder named Server at C Drive(C:)(you can create it any where but you have to copy your path everytime different from mine).Extract Apache24 folder from the downloaded zip into the Server folder.I will rename Apache24 folder to Apache(your choice to keep it Apache24 or whatevere just remember what you named it )
+
+2016-06-13
+
+Inside Apache folder goto conf folder and open httpd.conf file in your favorite text editor mine is Notepad++ .Replace all instance of “c:/Apache24” with wherever your Apache folder is mine is at “c:/Server/Apache”.
+
+2016-06-132028229
+
+Httpd.config is the configuration file for apache server by replacing the address will help with the installation of apache without any error.Next step is to find the ServerName in the file and replace “#ServerName http://www.example.com:80&#8221; with “ServerName localhost:80” why localhost because your running apache on your local machine if there was any server machine then the http://www.example.com will had been replaced by your (Domain Name)IP Address.What is localhost:80 ? It is the port number ?What is port Number? Port number is used connect to an application running on the server computer to which an Internet or other network message is to be forwarded when it arrives at a server.Here 80 means an http .What is http ? Hyper Text Transfer Protocol ,protocols means rules (Rules for network) to send a web pages (files) over internet.This means apache software will take http request from client at the specified address and respond back with web page also with using http.
+
+Now run command prompt with admin rights.Change directory to your Apache directory inside command prompt goto bin folder and follow these command
+
+httpd -k install
+httpd -k start
+ApacheMonitor.exe
+2016-06-13 (3)
+
+Open web browser and enter localhost in url.If it return “It works!” then you have sucessfully installed Apache on your computer.Basically it accepts the request from client in this case browser and returns the results in this case index.html in htdocs folder.
+
+2016-06-13 (4)
+
+Apache server only handles request and response of static html files but to truly create interactive(dynamic) and logical web pages you need some programming language  in our case we are using PHP but you can configure apache with any Scripting languages like python or ruby.So lets install php goto http://windows.php.net/download/ download the latest thread safe version matching the Microsoft C++ Redistributable you have installed (e.g
+
+VC14 x86 Thread Safe if you have Visual Stusio C++ Redistributable 2015 installed.
+VC11 x86 Thread Safe if you have Visual Stusio C++ Redistributable 2012 installed.
+VC9 x86 Thread Safe if you have Visual Stusio C++ Redistributable 2010 installed.
+Create php folder in Server Folder and extract the downloaded php zip in that folder.
+
+2016-06-13 (5)
+
+Now Goto config folder in Apache and open httpd.config in any text editor.Find(Ctrl + F) the LoadModule scroll down until last LoadModule and Paste the following
+LoadModule php5_module “C:/Server/php/php7apache2_4.dll”.This helps apache to know where is php located.Next find(Ctrl + F) the AddType scroll down until last AddType and Paste the following “AddType application/x-httpd-php .php”.This adds .php type to apache.Find(Ctrl + F) the line DirectoryIndex index.html add index.php
+
+Add the PHP location to the end of the httpd.conf file. For example, at the end of the file, add the following: PHPIniDir “Your PHP Location”
+
+LoadModule
+
+AddType.jpg
+
+index
+
+PHPIniDir
+
+1)In the php folder rename the php.ini-development to php.ini and open it in Text Editor.
+2)Find(Ctrl + F) the display_errors, and make sure the value is set to On.
+3) Find(Ctrl + F) the extension_dir = “./” and uncomment and change it to extension_dir = “C:\Server\php\ext” .
+Create a file “phpinfo.php” in htdocs folder in Apache with follwoing content:
+<?php
+phpinfo();
+?>
+
+2016-06-13 (7).png
+
+Restart Apache Server and goto http://localhost/phpinfo.php .If everything goes right you will see the following page.
+
+2016-06-13 (8)
+
+First server then a scripting language to create dynamic web pages now whats next generally a website consists a lot of  data so some sort of database is required to store this information.In our case we are using Mysql so goto http://dev.mysql.com/downloads/mysql/ download the zip or installer version. Click Next — > Select Complete –> Click Next–>Accept Licence –>Click Next –> Check Configure Mysql Now –> Click Finish
+
+15.png
+
+Check Standard Configuration –>Click Next –>Check Install as Service –>Click Next –>Check Modify Security Settings –> Enter the Password –> Click Next
+
+512.png
+
+Open php.ini file in the Server Folder and Uncomment the mbstring and mysqli extension.
+
+2016-06-13 (9)
+
+1)Goto phpmyadmin.net/ Download the latest PhpMyAdmin
+2)Extract it to phpMyAdmin folder in htdocs.
+
+2016-06-13 (10).png
+
+3)Restart the Apache Server.
+4)Goto http://localhost/phpMyAdmin/
+
+2016-06-13 (11).png
+
+You have sucessfully installed Php Apache Mysql but wait there is something more you need to configure for debugging your application that is XDebug.
+
+1)Goto http://xdebug.org/download.php from your browser and download the PHP 7.0 VC14 TS (32 bit)   Thread Safe 32 bit version.
+2)Copy and Paste it to the extension folder in the php.
+
+2016-06-13 (12).png
+
+3)Copy & Paste the following line of code at the end of php.ini file .
+[XDebug]
+;; Only Zend OR (!) XDebug
+zend_extension=”C:\Server\php\ext”
+xdebug.remote_enable=true
+xdebug.remote_host=localhost
+xdebug.remote_port=10000
+xdebug.remote_handler=dbgp
+
+2016-06-13 (14)
+
+4)Restart Apache Server.
+5)Goto to http://localhost/phpinfo.php scroll down to see if xDebug is installed
+
+2016-06-13 (13).png
